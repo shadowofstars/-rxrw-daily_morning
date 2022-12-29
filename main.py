@@ -49,11 +49,11 @@ def get_leo_info():
     if info.status_code != 200:
         return get_words()
     info_data = info.json()['data']
-    fortune='整体运势: '+info_data['fortune']['all']+'\t爱情运势: '+info_data['fortune']['love']+'\t工作运势: '+info_data['fortune']['work']+'\t金钱运势: '+info_data['fortune']['money']
-    lucky_color = info_data['data']['luckycolor']
-    all_description=info_data['data']['fortunetext']['all']
-    love_description = info_data['data']['fortunetext']['love']
-    health_description = info_data['data']['fortunetext']['health']
+    fortune='整体运势: '+str(info_data['fortune']['all'])+'\t爱情运势: '+str(info_data['fortune']['love'])+'\t工作运势: '+str(info_data['fortune']['work'])+'\t金钱运势: '+str(info_data['fortune']['money'])
+    lucky_color = info_data['luckycolor']
+    all_description=info_data['fortunetext']['all']
+    love_description = info_data['fortunetext']['love']
+    health_description = info_data['fortunetext']['health']
     return fortune,lucky_color,all_description,love_description,health_description
 
 
