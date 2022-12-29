@@ -43,7 +43,7 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
-
+'''
 def get_leo_info():
     info = requests.get('https://api.vvhan.com/api/horoscope?type=leo&time=today')
     if info.status_code != 200:
@@ -56,6 +56,13 @@ def get_leo_info():
     health_description = info_data['fortunetext']['health']
     return fortune,lucky_color,all_description,love_description,health_description
 
+fortune,lucky_color,all_description,love_description,health_description = get_leo_info()
+"fortune":{'value':fortune},
+"lucky_color":{'value':lucky_color},
+"all_description":{'value':all_description},
+"love_description":{'value':love_description},
+"health_description":{'value':health_description},
+'''
 
 
 
@@ -63,17 +70,12 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-fortune,lucky_color,all_description,love_description,health_description = get_leo_info()
+
 lucky_score = random.randint(60,90)
 data = {"weather":{"value":wea},
         "temperature":{"value":temperature},
         "love_days":{"value":get_count()},
         "birthday_left":{"value":get_birthday()},
-        "fortune":{'value':fortune},
-        "lucky_color":{'value':lucky_color},
-        "all_description":{'value':all_description},
-        "love_description":{'value':love_description},
-        "health_description":{'value':health_description},
         "lucky_score":{'value':lucky_score},
         "words":{"value":get_words(),"color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
