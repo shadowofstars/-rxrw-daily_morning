@@ -47,7 +47,7 @@ def get_random_color():
 def get_leo_info():
     info = requests.get('https://api.vvhan.com/api/horoscope?type=leo&time=today')
     if info.status_code != 200:
-        return get_words()
+        return get_leo_info()
     info_data = info.json()['data']
     fortune='整体运势: '+str(info_data['fortune']['all'])+'\t爱情运势: '+str(info_data['fortune']['love'])+'\t工作运势: '+str(info_data['fortune']['work'])+'\t金钱运势: '+str(info_data['fortune']['money'])
     lucky_color = info_data['luckycolor']
